@@ -1,0 +1,64 @@
+div{
+    width: 100%;
+    border: 1px solid #222222;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+body{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Deklaracja ilości kolumn w tabeli */
+    grid-template-rows: 100px 500px 100px; /* Deklaracja ilości wierszy w tabeli */
+}
+#content{
+    grid-column: 1/5; /* Ten zapis mówi o tym że ten element zajmie 4 kolumny licząc od lewej strony */
+    grid-row: 2/3; /* Ten zapis mówi o tym że ten element zajmie drugi wiersz licząc od góry */
+    background-color: green;
+}
+#sidebar{
+    grid-column: 5/6; /* Ten zapis mówi o tym że ten element zajmie piątą kolumnę licząc od lewej strony */
+    grid-row: 2/3; /* Ten zapis mówi o tym że ten element zajmie drugi wiersz licząc od góry */
+    background-color: blue;
+}
+#footer{
+    grid-column: 1/6; /* Ten zapis mówi o tym że ten element zajmie wszystkie 5 kolumn licząc od lewej strony */
+    grid-row: 3/4; /* Ten zapis mówi o tym że ten element zajmie trzeci wiersz licząc od góry */
+    background-color: red;
+}
+#menu{ 
+    grid-column: 1/6; /* Ten zapis mówi o tym że ten element zajmie wszystkie 5 kolumn licząc od lewej strony */
+    grid-row: 1/2; /* Ten zapis mówi o tym że ten element zajmie pierwszy wiersz licząc od góry */
+    background-color: yellow;
+}
+@media only screen and (max-width: 1000px) and (min-width: 601px){ /* To co znajzie się pomiędzy tymi nawiasami klamrowymi będzie działało tylko jeżeli szerokość ekrany będize większa niż 601px i mniejsza niż 1000px*/
+    #footer{
+        grid-row: 1/2;
+    }
+    #menu{
+        grid-row: 3/4;
+    }
+    #sidebar{
+        grid-column: 1/5;
+    }
+    #content{
+        grid-column: 5/6;
+    }
+}
+@media only screen and (max-width: 600px){ /* To co znajzie się pomiędzy tymi nawiasami klamrowymi będzie działało tylko jeżeli szerokość ekrany będzie mniejsza niż 600px*/
+    body{
+        grid-template-rows: 100px 500px 100px 100px;
+    }
+    #footer{
+        grid-row: 4/5;
+    }
+    #menu{
+        grid-row: 1/2;
+    }
+    #sidebar{
+        grid-column: 1/6;
+        grid-row: 3/4;
+    }
+    #content{
+        grid-column: 1/6;
+    }
+}
