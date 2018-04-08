@@ -7,14 +7,14 @@ div{
 }
 body{
     display: grid;
-    /* 1fr - jedna równa część strony */
+    /* 1fr - jedna jednostka WOLNEJ części bloku */
     /* auto - część strony jej wielkością steruje to co się znajdzie w tej kolumnie */
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Deklaracja ilości kolumn w tabeli */
+    grid-template-columns: 4fr 1fr; /* Deklaracja ilości kolumn w tabeli */
     grid-template-rows: 100px 500px 100px; /* Deklaracja ilości wierszy w tabeli*/    
     grid-template-areas:
-        'menu menu menu menu menu' /* 1 wiersz */
-        'content content content content sidebar' /* 2 wiersz */
-        'footer footer footer footer footer'; /* 3 wiersz */
+        'menu menu' /* 1 wiersz */
+        'content sidebar' /* 2 wiersz */
+        'footer footer'; /* 3 wiersz */
         /* Przypisanie poszczególnych komórek tabeli do określonych id */
 }
 #content{
@@ -33,21 +33,21 @@ body{
     grid-area: menu; /* Przypisanie id komórki do tego elementu */    
     background-color: yellow;
 }
-@media only screen and (max-width: 600px){ /* To co znajzie się pomiędzy tymi nawiasami klamrowymi będzie działało tylko jeżeli szerokość ekrany będzie mniejsza niż 600px*/
+@media only screen and (max-width: 600px){ /* To co znajdzie się pomiędzy tymi nawiasami klamrowymi będzie działało tylko jeżeli szerokość ekrany będzie mniejsza niż 600px*/
     body{
         grid-template-rows: 100px 500px 100px 100px; /* Deklaracja ilości wierszy w tabeli*/ 
         grid-template-areas: 
-            'footer footer footer footer footer'    /* 1 wiersz */        
-            'content content content content content' /* 2 wiersz */
-            'sidebar sidebar sidebar sidebar sidebar' /* 3 wiersz */
-            'menu menu menu menu menu'; /* 4 wiersz */
+            'footer footer'    /* 1 wiersz */        
+            'content content' /* 2 wiersz */
+            'sidebar sidebar' /* 3 wiersz */
+            'menu menu'; /* 4 wiersz */
     }
 }
 @media only screen and (min-width: 601px) and (max-width: 1000px){  /* To co znajzie się pomiędzy tymi nawiasami klamrowymi będzie działało tylko jeżeli szerokość ekrany będize większa niż 601px i mniejsza niż 1000px*/
     body{
         grid-template-areas: 
-            'footer footer footer footer footer'  /* 1 wiersz */         
-            'sidebar sidebar sidebar sidebar content' /* 2 wiersz */
-            'menu menu menu menu menu'; /* 3 wiersz */
+            'footer footer'  /* 1 wiersz */         
+            'sidebar content' /* 2 wiersz */
+            'menu menu'; /* 3 wiersz */
     }
 }
