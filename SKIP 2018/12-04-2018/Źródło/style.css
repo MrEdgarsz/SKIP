@@ -1,0 +1,33 @@
+/* MENU */
+
+#menu{
+    background-color: red;
+}
+#menu_logo{
+    background-color: yellow;
+}
+.menu_links{
+    box-sizing: border-box;
+    border: 5px solid green;
+}
+
+/* CONTENT */
+
+#content{
+    background-color: blue;
+}
+#content > div{
+    background-color: steelblue;
+}
+/* POSTS */
+
+#posts > div{
+    box-sizing: border-box;
+    background-color: grey;
+    border: 3px solid slategrey;
+}
+/* FOOTER */
+
+#footer > div{
+    background-color: yellow;
+}
