@@ -1,0 +1,6 @@
+#INSTALACJA SASS'A#
+
+1. Pobieramy instaler Ruby ze strony https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-2.5.1-1/rubyinstaller-devkit-2.5.1-1-x64.exe
+2. Instalujemy Ruby
+3. otwieramy konsolę i wpisujemy "gem install sass"
+4. DONE :)

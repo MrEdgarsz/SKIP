@@ -1,0 +1,21 @@
+$main-color: #fff;
+
+@mixin borders($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+.body{
+    background-color: $main-color;
+    .h1{
+        color: $main-color;
+    }
+    .h2{
+        color: red;
+    }
+    .h3{
+        @include borders(30px);
+    }
+}
