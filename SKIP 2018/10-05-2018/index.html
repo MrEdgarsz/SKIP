@@ -2,57 +2,136 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, "block"-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <div id="container">
-        <div id="cell_1" onclick="cellClicked(1)"></div>
-        <!-- Onclick = przy każdym kliknięciu | cellClicked(numer) to nasza funkcja którą wywołujemy przy każdym kliknięciu numer odpowiada id pola na które klikneliśmy -->
-        <div id="cell_2" onclick="cellClicked(2)"></div>
-        <div id="cell_3" onclick="cellClicked(3)"></div>
-        <div id="cell_4" onclick="cellClicked(4)"></div>
-        <div id="cell_5" onclick="cellClicked(5)"></div>
-        <div id="cell_6" onclick="cellClicked(6)"></div>
-        <div id="cell_7" onclick="cellClicked(7)"></div>
-        <div id="cell_8" onclick="cellClicked(8)"></div>
-        <div id="cell_9" onclick="cellClicked(9)"></div>
+        <div id="cell_1" row="1" col="1" cross="2" onclick="cellClicked(1)"></div>
+        <div id="cell_2" row="1" col="2" cross="0" onclick="cellClicked(2)"></div>
+        <div id="cell_3" row="1" col="3" cross="1" onclick="cellClicked(3)"></div>
+        <div id="cell_4" row="2" col="1" cross="0" onclick="cellClicked(4)"></div>
+        <div id="cell_5" row="2" col="2" cross="3" onclick="cellClicked(5)"></div>
+        <div id="cell_6" row="2" col="3" cross="0" onclick="cellClicked(6)"></div>
+        <div id="cell_7" row="3" col="1" cross="1" onclick="cellClicked(7)"></div>
+        <div id="cell_8" row="3" col="2" cross="0" onclick="cellClicked(8)"></div>
+        <div id="cell_9" row="3" col="3" cross="2" onclick="cellClicked(9)"></div>
     </div>
-    <div id="message_container"><span id="message">Runda gracza 1</span></div>
+    <div id="message_container">
+        <span id="message">Runda gracza 1</span>
+    </div>
+    <div id="button_container">
+        <button onclick="location.reload()">Zacznij grę od nowa</button>
+    </div>
+    </div>
     <script type="text/javascript">//Znacznik mówiący o tym że wszystko w jego obrębie jest kodem javascript'a i tak powinno być trakowane
-        let runda = 1; // tworzymy zmienną runda i przypisujemy jej początkową wartość 1
+        let round = 0; // tworzymy zmienną round i przypisujemy jej początkową wartość 1
+        let state = {
+            rows: [0,0,0],
+            cols: [0,0,0],
+            crosses: [0,0]
+        }; //Status gry
+        let endOfTheGame = false;
 
         function cellClicked(cell){ //Deklaracja funkcji cellClicked to nazwa naszej funkcji a cell to numer który przesyłamy do tej funkcji kiedy ją wywołujemy
-            if(runda <= 9){ // sprawdzamy czy gra nie przekroczyła maksymalnej ilości rund
+            if(round < 10){ // sprawdzamy czy gra nie przekroczyła maksymalnej ilości rund
                 //Jeżeli tak
+                let turn = 0;
                 let content = document.getElementById("cell_" + cell).innerHTML; // tworzymy zmienną o nazwie content i przypisujemy do niej zawartość elementu html którego id równe jest "cell_numer"
                 // Numer bierze się z tego co przesyłamy do naszej funkcji kiedy ją wywołujemy
                 // document.getElementById("id") pozwala nam wyszukać jakiś element po id w naszym dokumencie i stworzyć do niego odwołanie tak żebyśmy mogli go edytować
                 // .innerHTML  odpowiada za zawartość elementu (to co znajduje się pomiędzy jego otwierającym a zamykającym znacznikiem)
-                if (content == ""){//Sprawdzamy czy pole które klikneliśmy jest puste
+                if ((content == "") && (endOfTheGame == false)){//Sprawdzamy czy pole które klikneliśmy jest puste
                     //Jeżeli tak
-                    runda++;//Dodajemy 1 do zmiennej runda ten zapis jest równoważnikiem runda = rudna + 1
-                    if(runda %2 == 0){ //sprawdzamy czy zawartość zmienniej runda jest podzielna przez 2 żeby ustalić czyja teraz jest runda
+                    round++;//Dodajemy 1 do zmiennej round ten zapis jest równoważnikiem round = rudna + 1
+                    if(round %2 == 0){ //sprawdzamy czy zawartość zmienniej round jest podzielna przez 2 żeby ustalić czyja teraz jest round
                         //w tym celu stosujemy działanie MOD czyli Modulo. Modulo zwraca nam resztę z dzielenia jakieś liczby przez jakąś liczbę
                         // Jeżeli nasza reszta z dzielenia przez 2 jest równa 0 to znaczy że ta liczba jest podzielna przez 2 :)
-                        document.getElementById("message").innerHTML = "Runda gracza 2"; // "Łapiemy" diva o id message i wstawiamy do niego wiadomość;
-                        document.getElementById("cell_" + cell).innerHTML = "X"; // "Łapiemy" kratkę na planszy którą klikneliśmy i wstawiamy w nią krzyżyk
-                    }
-                    //Jeżeli Liczba nie jest podzielna przez 2 to oznacza że runda należy do gracza numer 1
-                    else{
                         document.getElementById("message").innerHTML = "Runda gracza 1"; // "Łapiemy" diva o id message i wstawiamy do niego wiadomość;
-                        document.getElementById("cell_" + cell).innerHTML = "O"; // "Łapiemy" kratkę na planszy którą klikneliśmy i wstawiamy w nią krzyżyk                 
+                        document.getElementById("cell_" + cell).innerHTML = "X"; // "Łapiemy" kratkę na planszy którą klikneliśmy i wstawiamy w nią krzyżyk
+                        turn = 0;
                     }
+                    //Jeżeli Liczba nie jest podzielna przez 2 to oznacza że round należy do gracza numer 1
+                    else{
+                        document.getElementById("message").innerHTML = "Runda gracza 2"; // "Łapiemy" diva o id message i wstawiamy do niego wiadomość;
+                        document.getElementById("cell_" + cell).innerHTML = "O"; // "Łapiemy" kratkę na planszy którą klikneliśmy i wstawiamy w nią krzyżyk                 
+                        turn = 1;
+                    }
+                    setState(cell, turn);
                 }      
             }
-            console.log(runda); // wysyłamy do konsoli informację o tym co zawiera zmienna runda
+            if(round == 9){
+                document.getElementById("message").innerHTML = "REMIS!!!!";
+                endOfTheGame = true;
+                document.getElementById("button_container").style.display = "block";
+                checkForWin();
+            }
         }
-        function checkForWin(){ // deklarujemy funkcję checkForWin w związku z tym że nie będziemy nic do niej przesyłać nie podajemy nic w nawiasach
-            let state = []; // Deklarujemy zmienną state która jest tablicą jednowymiarową i będzie przechowywała stan naszej gry
-            for(let i=0; i<=9; i++){ //tworzymy pętle któa wykona się 9 razy czyli dokładnie tyle ile mamy pól na naszej planszy
-               let content = document.getElementById("cell_" + i).innerHTML; //zapisujemy do zmiennej content zawartość złapanego elementu w tym przypadku 1 z 9 pól
+        function setState(numberOfCell, turn){
+            let cell = document.getElementById("cell_" + numberOfCell);
+            let row = cell.getAttribute("row");
+            let col = cell.getAttribute("col");
+            let cross = cell.getAttribute("cross");
+            if (turn == 1){ // GRACZ 2
+                state.rows[row-1] += -1;
+                state.cols[col-1] += -1;
+                if (cross == 3){
+                    state.crosses[0] += -1;
+                    state.crosses[1] += -1;
+                }
+                if ((cross != 0) && (cross != 3)){
+                    state.crosses[cross-1] += -1;
+                }
+            }
+            else{ // GRACZ 1
+                state.rows[row-1] += 1;
+                state.cols[col-1] += 1;
+                if (cross == 3){
+                    state.crosses[0] += 1;
+                    state.crosses[1] += 1;
+                }
+                if ((cross != 0) && (cross != 3)){
+                    state.crosses[cross-1] += 1;
+                }
+            }
+            checkForWin();
+        }
+        function checkForWin(){
+            for(let i=0; i<=3; i++){
+                if(state.rows[i] == 3){
+                    document.getElementById("message").innerHTML = "Wygrał gracz 2";
+                    endOfTheGame = true;
+                    document.getElementById("button_container").style.display = "block";
+                }
+                if(state.rows[i] == -3){
+                    document.getElementById("message").innerHTML = "Wygrał gracz 1";
+                    endOfTheGame = true;
+                    document.getElementById("button_container").style.display = "block";
+                }
+                if(state.cols[i] == 3){
+                    document.getElementById("message").innerHTML = "Wygrał gracz 2";
+                    endOfTheGame = true;
+                    document.getElementById("button_container").style.display = "block";
+                }
+                if(state.cols[i] == -3){
+                    document.getElementById("message").innerHTML = "Wygrał gracz 1";
+                    endOfTheGame = true;
+                    document.getElementById("button_container").style.display = "block";
+                }
+            }
+            for(let i=0; i<=2; i++){
+                if(state.crosses[i] == 3){
+                    document.getElementById("message").innerHTML = "Wygrał gracz 2";
+                    endOfTheGame = true;
+                    document.getElementById("button_container").style.display = "block";
+                }
+                if(state.crosses[i] == -3){
+                    document.getElementById("message").innerHTML = "Wygrał gracz 1";
+                    endOfTheGame = true;
+                    document.getElementById("button_container").style.display = "block";
+                }
             }
         }
     </script> <!-- tag zamykający nasz skrypt javascript -->

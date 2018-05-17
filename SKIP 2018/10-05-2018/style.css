@@ -28,6 +28,15 @@
     font-weight: bold;
     font-size: 30px;
 }
+#button_container{
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: none;
+}
+#button_container > button{
+    width: 150px;
+}
 #cell_1{grid-area: cell1;}
 #cell_2{grid-area: cell2;}
 #cell_3{grid-area: cell3;}
