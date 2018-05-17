@@ -12,10 +12,21 @@
 }
 #container > div{
     border: 5px solid #222;
+    width: 200px;
+    height: 200px;
     box-sizing: border-box;
-    font-size: 120px;
+    font-size: 130px;
     text-align: center;
     line-height: 200px;
+}
+#message_container{
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
 }
 #cell_1{grid-area: cell1;}
 #cell_2{grid-area: cell2;}
