@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>POSTY</h1>
+    <button id="loadButton">załaduj</button>
+    <div id="postsContainer"></div>
+    <script>
+        document.getElementById("loadButton").addEventListener("click", loadPosts);
+        let posts_json = '[{"title":"xDDDDDD","content":"xdDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD","date":"12.05.2018r","author":"root"},{"title":"xDDDhbethebhDDD","content":"xdDDDDDDDDDDDDDDgergtergertgertgtgDDDDDDDDDDDDDDDDDDDDD","date":"12.05.2018r","author":"root"},{"title":"xDDDDDDtrbhrth","content":"xdDDDDDDDDgfreetgregterDDDDDDDDDDDDDDDDDDDDDDDDDDD","date":"12.05.2018r","author":"root"},{"title":"xDDDDDbhtrhbrhbrD","content":"xdDDDDDDDDDDDDtbhejbrjjbyryjbbjbjbjbjrbjrbbjbjjbbjrDDDDDDDDDDDDDDDDDDDDDDD","date":"12.05.2018r","author":"root"},{"title":"xDDDbertheDDD","content":"xdDDDDbethertbhhbeehbehbtebhebebhbhebhhbhehbbeDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD","date":"12.05.2018r","author":"root"}]';
+        function loadPosts() {
+            let container = document.getElementById("postsContainer");
+            let posts = JSON.parse(posts_json);
+            for(let i=0; i <= posts.length-1; i++){
+                let post = document.createElement("div");
+                post.innerHTML = "Tytuł: " + posts[i].title + "\nContent: " + posts[i].content + "\nData: " + posts[i].date + "\nAutor: " + posts[i].author;
+                container.appendChild(post);
+            }    
+        }
+    </script>
+</body>
+</html>
