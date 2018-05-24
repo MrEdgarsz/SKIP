@@ -99,39 +99,33 @@
             checkForWin();
         }
         function checkForWin(){
+            let winner;
             for(let i=0; i<=3; i++){
                 if(state.rows[i] == 3){
-                    document.getElementById("message").innerHTML = "Wygrał gracz 2";
-                    endOfTheGame = true;
-                    document.getElementById("button_container").style.display = "block";
+                    winner = 2;
                 }
                 if(state.rows[i] == -3){
-                    document.getElementById("message").innerHTML = "Wygrał gracz 1";
-                    endOfTheGame = true;
-                    document.getElementById("button_container").style.display = "block";
+                    winner = 1;
                 }
                 if(state.cols[i] == 3){
-                    document.getElementById("message").innerHTML = "Wygrał gracz 2";
-                    endOfTheGame = true;
-                    document.getElementById("button_container").style.display = "block";
+                    winner = 2;
                 }
                 if(state.cols[i] == -3){
-                    document.getElementById("message").innerHTML = "Wygrał gracz 1";
-                    endOfTheGame = true;
-                    document.getElementById("button_container").style.display = "block";
+                    winner = 1;
                 }
             }
             for(let i=0; i<=2; i++){
                 if(state.crosses[i] == 3){
-                    document.getElementById("message").innerHTML = "Wygrał gracz 2";
-                    endOfTheGame = true;
-                    document.getElementById("button_container").style.display = "block";
+                    winner = 2;
                 }
                 if(state.crosses[i] == -3){
-                    document.getElementById("message").innerHTML = "Wygrał gracz 1";
-                    endOfTheGame = true;
-                    document.getElementById("button_container").style.display = "block";
+                    winner = 1;
                 }
+            }
+            if ((winner == 1) || (winner == 2)){
+                document.getElementById("message").innerHTML = "Wygrał gracz " + winner;
+                endOfTheGame = true;
+                document.getElementById("button_container").style.display = "block";
             }
         }
     </script> <!-- tag zamykający nasz skrypt javascript -->
